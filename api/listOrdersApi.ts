@@ -35,7 +35,7 @@ export enum ListOrdersApiApiKeys {
 
 export class ListOrdersApi {
     protected _basePath = defaultBasePath;
-    protected _defaultHeaders: { 'User-Agent': 'GrabFood-API-SDK/1.0.1/typescript-node' } = { 'User-Agent': 'GrabFood-API-SDK/1.0.1/typescript-node' };
+    protected _defaultHeaders: { 'User-Agent': 'GrabFood-API-SDK/1.0.2/typescript-node' } = { 'User-Agent': 'GrabFood-API-SDK/1.0.2/typescript-node' };
     protected _useQuerystring : boolean = false;
 
     protected authentications = {
@@ -95,9 +95,10 @@ export class ListOrdersApi {
      * @param authorization Specify the generated authorization token of the bearer type.
      * @param merchantID The merchant\&#39;s ID that is in GrabFood\&#39;s database.
      * @param date 
-     * @param page Specify the page number for the report.
+     * @param page Specify the page number for the report. Required if orderIDs is not provided.
+     * @param orderIDs List of order IDs. If provided, date and page are not required.
      */
-    public async listOrders (authorization: string, merchantID: string, date: string, page: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ListOrdersResponse;  }> {
+    public async listOrders (authorization: string, merchantID: string, date?: string, page?: number, orderIDs?: Array<string>, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ListOrdersResponse;  }> {
         const localVarPath = this.basePath + '/partner/v1/orders';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -120,16 +121,6 @@ export class ListOrdersApi {
             throw new Error('Required parameter merchantID was null or undefined when calling listOrders.');
         }
 
-        // verify required parameter 'date' is not null or undefined
-        if (date === null || date === undefined) {
-            throw new Error('Required parameter date was null or undefined when calling listOrders.');
-        }
-
-        // verify required parameter 'page' is not null or undefined
-        if (page === null || page === undefined) {
-            throw new Error('Required parameter page was null or undefined when calling listOrders.');
-        }
-
         if (merchantID !== undefined) {
             localVarQueryParameters['merchantID'] = ObjectSerializer.serialize(merchantID, "string");
         }
@@ -140,6 +131,10 @@ export class ListOrdersApi {
 
         if (page !== undefined) {
             localVarQueryParameters['page'] = ObjectSerializer.serialize(page, "number");
+        }
+
+        if (orderIDs !== undefined) {
+            localVarQueryParameters['orderIDs'] = ObjectSerializer.serialize(orderIDs, "Array<string>");
         }
 
         localVarHeaderParams['Authorization'] = ObjectSerializer.serialize(authorization, "string");

@@ -1,6 +1,6 @@
 {
     "name": "@grab/grabfood-api-sdk",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "NodeJS client for @grab/grabfood-api-sdk",
     "repository": {
         "type": "git",

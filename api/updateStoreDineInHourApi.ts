@@ -36,7 +36,7 @@ export enum UpdateStoreDineInHourApiApiKeys {
 
 export class UpdateStoreDineInHourApi {
     protected _basePath = defaultBasePath;
-    protected _defaultHeaders: { 'User-Agent': 'GrabFood-API-SDK/1.0.1/typescript-node' } = { 'User-Agent': 'GrabFood-API-SDK/1.0.1/typescript-node' };
+    protected _defaultHeaders: { 'User-Agent': 'GrabFood-API-SDK/1.0.2/typescript-node' } = { 'User-Agent': 'GrabFood-API-SDK/1.0.2/typescript-node' };
     protected _useQuerystring : boolean = false;
 
     protected authentications = {
